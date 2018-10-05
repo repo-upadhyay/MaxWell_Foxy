@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/FoxyApp">
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/mysql" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/foxydb?autoReconnect=true" username="root"/>
+  <ResourceLink global="jdbc/foxydbRW" name="jdbc/mysql" type="javax.sql.DataSource"/>
+</Context>

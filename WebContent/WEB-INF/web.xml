@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    
+    <!--
+    Please do following setup step for newly installed Netbeans to access mysql:-
+    1. Copy MYSQL connector into ${NETBEAN_INSTALLED_DIR}/enterprise3/apache-tomcat-5.5.17/common/lib
+       ie: mysql-connector-java-3.1.13-bin.jar copy into dir mentioned above.
+       
+    2. Add following config into server.xml (right-click on server instance):-
+            ============ ADD FOLLOWING LINES IN -START ==================
+            <Realm className="org.apache.catalina.realm.JDBCRealm" 
+                   connectionName="webuser" connectionPassword="no_password" 
+                   connectionURL="jdbc:mysql://localhost:3306/foxydb" debug="99" digest="MD5" 
+                   driverName="com.mysql.jdbc.Driver" 
+                   roleNameCol="role" userCredCol="password" userNameCol="userid" 
+                   userRoleTable="user_role" userTable="user"/>
+            ============ ADD FOLLOWING LINES IN -END ==================
+           
+           ### PLEASE SEARCH FOLLOWING LINE AND ADD IN ABOVE CONFIG JUST BEFORE FOLLOWING LINES ###
+           Define the default virtual host
+           Note: XML Schema validation will not work with Xerces 2.2.
+     
+     3. mysql> create database foxydb
+     
+     4. grant all on foxydb.* to '<USERNAME>'@'localhost' identified by '<PASSWORD>';
+     
+     5. update user set password=OLD_PASSWORD("<PASSWORD>") where user="<USERNAME>" and host = "localhost";
+     
+     6. Load in mysql dump image, you are done and ready to compile and run. Oops!! Remember to create all lib needed
+    -->
+    <description>Foxy System</description>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>restricted</web-resource-name>
+            <url-pattern>/app/*</url-pattern>
+        </web-resource-collection>
+        
+        <auth-constraint>
+            <role-name>manager</role-name>
+            <role-name>FOXY</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/loginerror.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <security-role>
+        <role-name>manager</role-name>
+    </security-role>
+    <security-role>
+        <role-name>FOXY</role-name>
+    </security-role>
+    
+    <resource-ref>
+        <description>MySQL Connection</description>
+        <res-ref-name>jdbc/mysql</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+    
+    <context-param>
+        <param-name>com.sun.faces.verifyObjects</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>com.sun.faces.validateXml</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config.xml</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>    
+    
+    
+    <!-- AJAX for JSF filter -->
+    <filter>
+        <display-name>Ajax4jsf Filter</display-name>
+        <filter-name>ajax4jsf</filter-name>
+        <filter-class>org.ajax4jsf.Filter</filter-class>
+    </filter>
+    <!-- AJAX for JSF filter mapping -->
+    <filter-mapping>
+        <filter-name>ajax4jsf</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>    
+    
+    
+    <!-- Tomahawk filter -->
+    <filter>
+        <filter-name>extensionsFilter</filter-name>
+        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+        <init-param>
+            <description>Set the size limit for uploaded files.
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+            1g - 1 GB</description>
+            <param-name>uploadMaxFileSize</param-name>
+            <param-value>5m</param-value>
+        </init-param>
+        <init-param>
+            <description>Set the threshold size - files
+                below this limit are stored in memory, files above
+                this limit are stored on disk.
+                
+                Format: 10 - 10 bytes
+                10k - 10 KB
+                10m - 10 MB
+            1g - 1 GB</description>
+            <param-name>uploadThresholdSize</param-name>
+            <param-value>1k</param-value>
+        </init-param>
+    </filter>
+    <!-- Tomahawk filter mapping -->
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>extensionsFilter</filter-name>
+        <url-pattern>/faces/*</url-pattern>
+    </filter-mapping>                    
+    
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>    
+    
+    <!-- Specific servlet to serve image pulling -->
+    <servlet>
+        <servlet-name>DisplayPicture</servlet-name>
+        <servlet-class>com.foxy.servlet.DisplayPicture</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayPicture</servlet-name>
+        <url-pattern>/app/DisplayPicture</url-pattern>       
+    </servlet-mapping>
+    
+    
+    <!-- Specific servlet to serve Jasper report image pulling -->
+    <servlet>
+        <servlet-name>JasperImageServlet</servlet-name>
+        <servlet-class>com.foxy.servlet.JasperImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JasperImageServlet</servlet-name>
+        <url-pattern>/app/JasperImageServlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+</web-app>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+    <hibernate-mapping>
+        <class name="com.foxy.db.ChkLstFinishRpt" table="chklstfinishrpt">
+            <id name="id"  column="id">
+                <generator class="native"/>
+            </id>
+            <property name="ccode"  column="ccode"/>
+            <property name="refNo"  column="refno"/>
+            <property name="buyer"  column="buyer"/>
+            <property name="merchant"  column="merchant"/>
+            <property name="totQty"  column="totqty"/>
+            <property name="cutQty"  column="cutqty"/>
+            <property name="sewQty"  column="sewqty"/>
+            <property name="washQty"  column="washqty"/>
+            <property name="packQty"  column="packqty"/>
+            <property name="exportQty"  column="exportqty"/>
+            <property name="sampQty"  column="sampqty"/>
+            <property name="logaQty"  column="logaqty"/>
+            <property name="logbQty"  column="logbqty"/>
+        </class>
+    </hibernate-mapping>

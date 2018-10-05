@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.Menu" table="menu">
+        <id name="menuCode" column="menucode"/>
+        <property name="menuParent" column="parent"/>
+        <property name="menuName" column="menuname"/>
+        <property name="action" column="action"/>
+        <property name="sequence" column="sequence"/>
+    </class>
+</hibernate-mapping>

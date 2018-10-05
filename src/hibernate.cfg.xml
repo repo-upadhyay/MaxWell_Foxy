@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory name="java:comp/env/foxy/SessionFactory">
+    <!-- properties -->
+    <property name="hibernate.session_factory_name">foxy/SessionFactory</property>
+    <property name="connection.datasource">java:comp/env/jdbc/mysql</property>
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="show_sql">false</property>
+    <property name="use_outer_join">true</property>
+    <!-- mapping files -->
+    <mapping resource="Menu.hbm.xml"/>
+    <mapping resource="MenuTreeList.hbm.xml"/>
+    <mapping resource="User.hbm.xml"/>
+    <mapping resource="Orders.hbm.xml"/>
+    <mapping resource="OrderNoReserved.hbm.xml"/>
+    <mapping resource="OrderNoReplaced.hbm.xml"/>
+    <mapping resource="OrderSummary.hbm.xml"/>
+    <mapping resource="OrderConfirm.hbm.xml"/>
+    <mapping resource="Category.hbm.xml"/>
+    <mapping resource="Customer.hbm.xml"/>
+    <mapping resource="Parameter.hbm.xml"/>
+    <mapping resource="OrderNo.hbm.xml"/>
+    <mapping resource="Shipping.hbm.xml"/>
+    <mapping resource="UserRole.hbm.xml"/>
+    <mapping resource="CustBrand.hbm.xml"/>
+    <mapping resource="FactoryMast.hbm.xml"/>
+    <mapping resource="CustDivision.hbm.xml"/>
+    <mapping resource="ProdSchedule.hbm.xml"/>
+    <mapping resource="ProdScheduleLots.hbm.xml"/>
+    <mapping resource="ProdScheduleJoinLots.hbm.xml"/>
+    <mapping resource="QuotaMast.hbm.xml"/>
+    <mapping resource="QuotaMastJoinCats.hbm.xml"/>
+    <mapping resource="QuotaCats.hbm.xml"/>
+    <mapping resource="QuotaEntry.hbm.xml"/>
+    <mapping resource="Supplier.hbm.xml"/>
+    <mapping resource="ForexRate.hbm.xml"/>
+    <mapping resource="Inventory.hbm.xml"/>
+    <mapping resource="InvMovement.hbm.xml"/>
+    <mapping resource="SalesInvoice.hbm.xml"/>
+    <mapping resource="SalesInvoiceDetail.hbm.xml"/>
+    <mapping resource="ChkLstAccsCheckList.hbm.xml"/>
+    <mapping resource="ChkLstFinishRpt.hbm.xml"/>
+    <mapping resource="ChkLstSampCheckList.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.ProdScheduleJoinLots" table="prodschedule">
+        <id name="prodSchId" column="prodschid"/>
+        <property name="ccode" column="ccode"/>
+        <property name="lineNo" column="lineNo"/>
+        <property name="refNo" column="refno"/>
+        <property name="ordQty" column="ordqty"/>
+        <property name="sewStart" column="sewstart"/>
+        <property name="sewEnd" column="sewend"/>
+        <property name="numOfDay" column="numofday"/>
+        <property name="dailyProdQty" column="dailyprodqty"/>
+        <property name="bySubCon" column="bySubCon"/>
+        <property name="groups" column="groups"/>
+        <property name="remark" column="remark"/>
+        <property name="insTime" column="instime"/>
+        
+        <set name="lotsBean" lazy="false" table="prodschedulelots" order-by="lot asc">
+            <key column="prodSchId"/>
+            <one-to-many class="com.foxy.db.ProdScheduleLots"/>
+        </set>        
+    </class>
+</hibernate-mapping>

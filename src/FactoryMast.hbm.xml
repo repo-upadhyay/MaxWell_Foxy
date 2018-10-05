@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.FactoryMast" table="factorymast">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        
+        <property name="factoryCode" column="factorycode"/>
+        <property name="countryCode" column="countrycode"/>
+        <property name="parentCompanyId" column="parentcompanyid"/>
+        <property name="factoryName" column="factoryname"/>
+        <property name="factoryNameLong" column="factorynamelong"/>
+        <property name="seqNo" column="seqno"/>
+        <property name="status" column="status"/>
+        <property name="delUsrId" column="delusrid"/>
+        <property name="delTime" column="deltime"/>
+        <property name="updUsrId" column="updusrid"/>
+        <property name="updTime" column="updtime"/>
+        <property name="insUsrId" column="insusrid"/>
+        <property name="insTime" column="instime"/>        
+    </class>
+</hibernate-mapping>

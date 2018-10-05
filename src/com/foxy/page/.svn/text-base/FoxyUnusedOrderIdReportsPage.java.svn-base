@@ -1,0 +1,268 @@
+/*
+ * FoxyUnusedOrderIdReportsPage.java
+ *
+ * Created on June 20, 2006, 6:18 PM
+ *
+ * To change this template, choose Tools | Template Manager
+ * and open the template in the editor.
+ */
+
+package com.foxy.page;
+
+import javax.faces.application.FacesMessage;
+import com.foxy.db.HibernateUtil;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+/**
+ *
+ * @author hcting
+ */
+public class FoxyUnusedOrderIdReportsPage extends Page implements Serializable{
+    private static String MENU_CODE = new String("FOXY");
+    
+    private DataModel dataListModel;
+    
+    
+    public class ReportDataBean {
+        private String orderId = null;
+        private String stylecode = null;
+        private String custCode = null;
+        private String custBrand= null;
+        private String custDivision = null;
+        private String wash = null;
+        private String merchandiser = null;
+        private Date insTime = null;
+        private String insUser = null;
+        private Date updTime = null;
+        private String updUser = null;
+        
+        public String getOrderId() {
+            return orderId;
+        }
+        
+        public void setOrderId(String orderId) {
+            this.orderId = orderId;
+        }
+        
+        
+        public String getStylecode() {
+            return stylecode;
+        }
+        
+        public void setStylecode(String stylecode) {
+            this.stylecode = stylecode;
+        }
+        
+        public String getCustCode() {
+            return custCode;
+        }
+        
+        public void setCustCode(String custCode) {
+            this.custCode = custCode;
+        }
+        
+        public String getCustBrand() {
+            return custBrand;
+        }
+        
+        public void setCustBrand(String custBrand) {
+            this.custBrand = custBrand;
+        }
+        
+        public String getCustDivision() {
+            return custDivision;
+        }
+        
+        public void setCustDivision(String custDivision) {
+            this.custDivision = custDivision;
+        }
+        
+        public String getWash() {
+            return wash;
+        }
+        
+        public void setWash(String wash) {
+            this.wash = wash;
+        }
+        
+        public String getMerchandiser() {
+            return merchandiser;
+        }
+        
+        public void setMerchandiser(String merchandiser) {
+            this.merchandiser = merchandiser;
+        }
+        
+        public Date getInsTime() {
+            return insTime;
+        }
+        
+        public void setInsTime(Date insTime) {
+            this.insTime = insTime;
+        }
+        
+        public String getInsUser() {
+            return insUser;
+        }
+        
+        public void setInsUser(String insUser) {
+            this.insUser = insUser;
+        }
+        
+        public Date getUpdTime() {
+            return updTime;
+        }
+        
+        public void setUpdTime(Date updTime) {
+            this.updTime = updTime;
+        }
+        
+        public String getUpdUser() {
+            return updUser;
+        }
+        
+        public void setUpdUser(String updUser) {
+            this.updUser = updUser;
+        }
+        
+    }; //Inner class end
+    
+    
+    public FoxyUnusedOrderIdReportsPage() {
+        super(new String("ProductionReportsForm"));
+        
+        try {
+            this.isAuthorize(MENU_CODE);
+            //System.out.println(ctx.getApplication().getViewHandler().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    public String search() {
+        this.foxySessionData.setAction(LST);
+        return (null);
+    }
+    
+    public DataModel getUnusedOrderIdReportData(){
+        List<ReportDataBean>  recordList = null;
+        try {
+            SQLQuery q = null;
+            Session session = (Session) HibernateUtil.currentSession();
+            Transaction tx= session.beginTransaction();
+            
+            String qstr = "SELECT od.orderid as orderid, od.stylecode as stylecode, od.custcode as custcode, ";
+            qstr += "  od.custbrand as custbrand, od.custdivision as custdivision, SUBSTRING(od.wash,1,10) as wash, ";
+            qstr += "  od.merchandiser as merchandiser, ";
+            qstr += "  od.instime as instime, od.insusrid as insuser, od.updtime as updtime, od.updusrid as upduser ";
+            qstr += "  FROM orders as od ";
+            qstr += "  WHERE od.status != 'D' ";
+            qstr += "  AND orderid NOT IN (SELECT os.orderid from ordsummary as os  where os.orderid = od.orderid) ";
+            qstr += "  ORDER BY orderid";
+            
+            //System.err.println("Test 1111111122222");
+            q = session.createSQLQuery(qstr);
+            
+            //add scalar
+            //line 1
+            q.addScalar("orderid", Hibernate.STRING);
+            q.addScalar("stylecode", Hibernate.STRING);
+            q.addScalar("custcode", Hibernate.STRING);
+            //line 2
+            q.addScalar("custbrand", Hibernate.STRING);
+            q.addScalar("custdivision", Hibernate.STRING);
+            q.addScalar("wash", Hibernate.STRING);
+            //line 3
+            q.addScalar("merchandiser", Hibernate.STRING);
+            //line 4
+            q.addScalar("instime", Hibernate.TIMESTAMP);
+            q.addScalar("insuser", Hibernate.STRING);
+            q.addScalar("updtime", Hibernate.TIMESTAMP);
+            q.addScalar("upduser", Hibernate.STRING);
+            
+            
+            //recordList = q.list();
+            //System.err.println("Test 111111112222233333344444444");
+            Iterator it = q.list().iterator();
+            
+            //System.err.println("Total records = " + q.list().size());
+            
+            if ( recordList == null){
+                recordList = new ArrayList();
+            }
+            
+            //System.err.println("Test 11111");
+            ReportDataBean grandTotal = new  ReportDataBean();
+            try {
+                grandTotal.setOrderId(new String("Grand Total:"));
+                Double tmp = null;
+                while (it.hasNext()){
+                    int idx = 0;
+                    Object[] tmpRow = (Object[])it.next();
+                    ReportDataBean obj = new  ReportDataBean();
+                    obj.setOrderId((String)tmpRow[idx++]);
+                    obj.setStylecode((String)tmpRow[idx++]);
+                    obj.setCustCode((String)tmpRow[idx++]);
+                    obj.setCustBrand((String)tmpRow[idx++]);
+                    obj.setCustDivision((String)tmpRow[idx++]);
+                    obj.setWash((String)tmpRow[idx++]);
+                    obj.setMerchandiser((String)tmpRow[idx++]);
+                    obj.setInsTime((Date)tmpRow[idx++]);
+                    obj.setInsUser((String)tmpRow[idx++]);
+                    obj.setUpdTime((Date)tmpRow[idx++]);
+                    obj.setUpdUser((String)tmpRow[idx++]);
+                    
+                    recordList.add(obj);
+                }
+            } catch ( Exception e){
+                e.printStackTrace();
+            }
+            
+            //System.err.println("Test 11111333");
+            //recordList.add(grandTotal); //no total implemented yet
+            //System.err.println("Test 1111144444");
+            if (dataListModel == null) {
+                //System.err.println("Search for records 333");
+                dataListModel = new ListDataModel();
+            }
+            
+            //System.err.println("Test 111115555");
+            dataListModel.setWrappedData(recordList);
+            //System.err.println("Test 11111666");
+            tx.commit();
+        } catch (HibernateException e) {
+            //do something here with the exception
+            e.printStackTrace();
+            FacesMessage fmsg  = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getCause().toString(), e.getMessage());
+            ctx.addMessage(null, fmsg);
+        } catch (Exception e){
+            e.printStackTrace();
+            FacesMessage fmsg  = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getCause().toString(), e.getMessage());
+            ctx.addMessage(null, fmsg);
+        }finally {
+            HibernateUtil.closeSession();
+        }
+        
+        //Avoid null pointer exception
+        if (dataListModel == null) {
+            System.err.println("No records ....!!!");
+            dataListModel = new ListDataModel();
+        }
+        
+        return dataListModel;
+    }
+}

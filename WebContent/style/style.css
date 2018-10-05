@@ -1,0 +1,69 @@
+body {
+  font-family: verdana,arial,helvetica,sans-serif;
+  font-size: x-small;
+}
+td, th {
+  font-size: small;
+}
+input, textarea {
+  font-size: 80%;
+}
+.title {
+  font-size: large; 
+  font-weight: bold;
+  color: #5671A0;
+}
+.small {
+  font-size: 70%;
+  color: white;
+}
+.small a, small a:visited {
+  color: white;
+}
+.smalltitle {
+  font-size: small;
+  font-weight: bold;
+  color: #5671A0;
+}
+.toolbar {
+  padding: 4px; 
+  background-color: #7694C8;
+}
+.tablebg {
+  background-color: #EEF3FB;
+}
+.oddRow {
+  background-color: #FFFFFF;
+}
+.evenRow {
+  background-color: #EEF3FB;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.box {
+  border: thin solid #7694C8;
+}
+.labels {
+  background-color: #EEF3FB;
+  border-bottom: thin solid black;
+  width: 50%;
+}
+.tab, .selected-tab {
+  border-right: medium solid black;
+  border-top: thin solid white;
+  padding: 0.5em 2em;
+}
+.selected-tab {
+  font-weight: bold;
+}
+.tab A, .selected-tab A {
+  color: black;
+  text-decoration: none;
+}
+.tab A:hover {
+  text-decoration: underline;
+}

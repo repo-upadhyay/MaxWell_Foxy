@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.Shipping" table="shipping">
+        <id name="id" column="srefid">
+            <generator class="increment"/>
+        </id>
+        
+        <property name="ccRefId" column="crefid"/>
+        <property name="invoice" column="invoice"/>
+        <property name="lcNumber" column="lcnumber"/>
+        <property name="etd" column="etd"/>
+        <property name="eta" column="eta"/>
+        <property name="qtyDzn" column="qtydzn"/>
+        <property name="qtyPcs" column="qtypcs"/>
+        <property name="unitc" column="unitc"/>
+        <property name="amount" column="amount"/>
+        <property name="ctn" column="ctn"/>
+        <property name="vessel" column="vessel"/>
+        <property name="voyage" column="voyage"/>
+        <property name="shipStat" column="shipstat"/>
+        <property name="visaNo" column="visano"/>
+        <property name="coCert" column="cocert"/>
+        <property name="expRegNo" column="expregno"/>
+        <property name="shipMode" column="shipmode"/>
+        <property name="costFreight" column="costfreight"/>
+        <property name="cmtUnitPrc" column="cmtunitprc"/>
+        <property name="fobUnitPrc" column="fobunitprc"/>
+        <property name="status" column="status"/>
+        <property name="delUsrId" column="delusrid"/>
+        <property name="delTime" column="deltime"/>
+        <property name="updUsrId" column="updusrid"/>
+        <property name="updTime" column="updtime"/>
+        <property name="insUsrId" column="insusrid"/>
+        <property name="insTime" column="instime"/>
+    </class>
+</hibernate-mapping>

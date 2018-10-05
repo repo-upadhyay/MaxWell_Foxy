@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.OrderNoReserved" table="ordernoreserved">
+        <id name="resvNoId" column="resvnoid">
+            <generator class="increment"/>
+        </id>
+        <property name="year" column="year"/>
+        <property name="mainFactory" column="mainfactory"/>
+        <property name="reservedNo" column="reservedno"/>
+        <property name="forUserId" column="foruserid"/>
+        <property name="reservedOn" column="reservedon"/>
+        <property name="expiredOn" column="expiredon"/>
+        <property name="status" column="status"/>
+    </class>
+</hibernate-mapping>

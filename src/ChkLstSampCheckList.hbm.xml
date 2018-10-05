@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+    PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+    <hibernate-mapping>
+        <class name="com.foxy.db.ChkLstSampCheckList" table="chklstsampchecklist">
+            <id name="id"  column="id">
+                <generator class="native"/>
+            </id>
+            <property name="ccode"  column="ccode"/>
+            <property name="refNo"  column="refno"/>
+            <property name="style"  column="style"/>
+            <property name="buyer"  column="buyer"/>
+            <property name="poNo"  column="pono"/>
+            <property name="merchant"  column="merchant"/>
+            <property name="qty"  column="qty"/>
+            <property name="del"  column="del"/>
+            <property name="fabricDel"  column="fabricdel"/>
+            <property name="color"  column="color"/>
+            <property name="fitSub1"  column="fitsub1"/>
+            <property name="comments"  column="comments"/>
+            <property name="fitSub2"  column="fitsub2"/>
+            <property name="finalAp"  column="finalap"/>
+            <property name="soSub1"  column="sosub1"/>
+            <property name="soComment1"  column="socomment1"/>
+            <property name="soSub2"  column="sosub2"/>
+            <property name="soApp"  column="soapp"/>
+            <property name="apSPL"  column="apspl"/>
+            <property name="ppSpl"  column="ppspl"/>
+            <property name="adSpl"  column="adspl"/>
+            <property name="topSamp"  column="topsamp"/>
+            <property name="topSampComment"  column="topsampcomment"/>
+            <property name="testSamp"  column="testsamp"/>
+            <property name="testRpt"  column="testrpt"/>
+            <property name="finalTestSamp"  column="ftestsamp"/>
+            <property name="finalGmtTestRpt"  column="fgmttestrpt"/>
+            <property name="shipSpl"  column="shipspl"/>
+            <property name="srmk1" column="srmk1"/>
+            <property name="rmk1" column="rmk1"/>
+            <property name="rmk1Date" column="rmk1date"/>
+            <property name="rmk2" column="rmk2"/>
+            <property name="rmk2Date" column="rmk2date"/>
+            <property name="rmk3" column="rmk3"/>
+            <property name="rmk3Date" column="rmk3date"/>
+            <property name="rmk4" column="rmk4"/>
+            <property name="rmk4Date" column="rmk4date"/>
+            <property name="rmk5" column="rmk5"/>
+            <property name="rmk5Date" column="rmk5date"/>
+            <property name="delReq"  column="delreq"/>
+            <property name="fabricDelReq"  column="fabricdelreq"/>
+            <property name="fitSub1Req"  column="fitsub1req"/>
+            <property name="commentsReq"  column="commentsreq"/>
+            <property name="fitSub2Req"  column="fitsub2req"/>
+            <property name="finalApReq"  column="finalapreq"/>
+            <property name="soSub1Req"  column="sosub1req"/>
+            <property name="soComment1Req"  column="socomment1req"/>
+            <property name="soSub2Req"  column="sosub2req"/>
+            <property name="soAppReq"  column="soappreq"/>
+            <property name="apSPLReq"  column="apsplreq"/>
+            <property name="ppSplReq"  column="ppsplreq"/>
+            <property name="adSplReq"  column="adsplreq"/>
+            <property name="topSampReq"  column="topsampreq"/>
+            <property name="topSampCommentReq"  column="topsampcommentreq"/>
+            <property name="testSampReq"  column="testsampreq"/>
+            <property name="testRptReq"  column="testrptreq"/>
+            <property name="finalTestSampReq"  column="ftestsampreq"/>
+            <property name="finalGmtTestRptReq"  column="fgmttestrptreq"/>
+            <property name="shipSplReq"  column="shipsplreq"/>
+            <property name="srmk1Req"  column="srmk1req"/>
+            <property name="rmk1Req"  column="rmk1req"/>
+            <property name="rmk2Req"  column="rmk2req"/>
+            <property name="rmk3Req"  column="rmk3req"/>
+            <property name="rmk4Req"  column="rmk4req"/>
+            <property name="rmk5Req"  column="rmk5req"/>            
+        </class>
+    </hibernate-mapping>

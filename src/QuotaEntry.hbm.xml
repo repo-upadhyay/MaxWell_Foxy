@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.QuotaEntry" table="quotaentry">
+        <id name="qtaEntryId" column="qtaentryid">
+            <generator class="native"/>
+        </id>
+        
+        <property name="country" column="country"/>
+        <property name="quota" column="quota"/>
+        <property name="effDate" column="effdate"/>
+        <property name="expDate" column="expdate"/>
+        <property name="type" column="type"/>
+        <property name="quotaRefNo" column="quotarefno"/>
+        <property name="quotaQty" type="double"  column="quotaqty"/>
+        <property name="cost" type="double"  column="cost"/>
+        <property name="status" column="status"/>
+        <property name="delUsrId" column="delusrid"/>
+        <property name="delTime" column="deltime"/>        
+        <property name="updUsrId" column="updusrid"/>
+        <property name="updTime" column="updtime"/>
+        <property name="insUsrId" column="insusrid"/>
+        <property name="insTime" column="instime"/>
+    </class>
+</hibernate-mapping>

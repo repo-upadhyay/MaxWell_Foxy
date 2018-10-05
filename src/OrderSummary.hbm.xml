@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.foxy.db.OrderSummary" table="ordsummary">
+        <id name="id" column="srefid">
+            <generator class="increment"/>
+        </id>
+        
+        <property name="orderId" column="orderid"/>
+        <property name="month" column="month"/>
+        <property name="location" column="location"/>
+        <property name="mainFactory" column="mainfactory"/>
+        <property name="catId" column="catid"/>
+        <property name="importTax" column="importtax"/>
+        <property name="quota" column="quota"/>
+        <property name="multiplier" column="multiplier"/>
+        <property name="qtyDzn" column="qtydzn"/>
+        <property name="qtyPcs" column="qtypcs"/>
+        <property name="unit" column="unit"/>
+        <property name="unitc" column="unitc"/>
+        <property name="delivery" column="delivery"/>
+        <property name="fabricDeliveryDate" column="fabricdeliverydate"/>
+        <property name="ship" column="ship"/>            
+        <property name="destination" column="destination"/>
+        <property name="orderMethod" column="ordermethod"/>
+        <property name="remark" column="remark"/>
+        <property name="status" column="status"/>
+        <property name="delUsrId" column="delusrid"/>
+        <property name="delTime" column="deltime"/>
+        <property name="updUsrId" column="updusrid"/>
+        <property name="updTime" column="updtime"/>
+        <property name="insUsrId" column="insusrid"/>
+        <!-- <property name="insTime" column="instime"/> -->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.foxy.db.Orders" table="orders">
+    <id column="orderid" name="orderId"/>
+    <property column="cnamecode" name="cnameCode"/>
+    <property column="custcode" name="custCode"/>
+    <property column="custbrand" name="custBrand"/>
+    <property column="custdivision" name="custDivision"/>
+    <property column="stylecode" name="styleCode"/>
+    <property column="season" name="season"/>
+    <property column="merchandiser" name="merchandiser"/>
+    <property column="orderdate" name="orderDate"/>
+    <property column="unitprice" name="unitPrice"/>
+    <property column="descf" name="description"/>
+    <property column="remark" name="remark"/>
+    <property column="qtydzn" name="qtyDzn"/>
+    <property column="qtypcs" name="qtyPcs"/>
+    <property column="horizontal" name="horizontal"/>
+    <property column="vertical" name="vertical"/>
+    <property column="imgfile" name="imgFile"/>
+    <property column="priceterm" name="priceTerm"/>
+    <property column="fabrication" name="fabrication"/>
+    <property column="fabrictype" name="fabricType"/>
+    <property column="fabricmill" name="fabricMill"/>
+    <property column="dailycap" name="dailyCap"/>
+    <property column="colourtypecode" name="colourTypeCode"/>
+    <property column="graphictypeCode" name="graphicTypeCode"/>
+    <property column="fabricyydz" name="fabricYyDz"/>
+    <property column="fabricprice" name="fabricPrice"/>
+    <property column="costcm" name="costCm"/>
+    <property column="costbasictrim" name="costBasicTrim"/>
+    <property column="costaddtrim" name="costAddTrim"/>
+    <property column="ftycm" name="ftyCm"/>
+    <property column="ftyremark" name="ftyRemark"/>
+    <property column="ftytrim" name="ftyTrim"/>
+    <property column="actualoutput" name="actualOutput"/>
+    <property column="actualcm" name="actualCm"/>
+    <property column="actualtrim" name="actualTrim"/>
+    <property column="wash" name="wash"/>
+    <property column="swash" name="swash"/>
+    <property column="gcost" name="gcost"/>
+    <property column="quotauom" name="quotaUom"/>
+    <property column="uom" name="uom"/>
+    <property column="status" name="status"/>
+    <property column="delusrid" name="delUsrId"/>
+    <property column="deltime" name="delTime"/>
+    <property column="updusrid" name="updUsrId"/>
+    <property column="updtime" name="updTime"/>
+    <property column="insusrid" name="insUsrId"/>
+   <!--  <property column="instime" name="insTime"/> -->
+    <property column="marketingremark" name="remarkMarketing"/>
+  </class>
+</hibernate-mapping>
